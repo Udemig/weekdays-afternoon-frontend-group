@@ -1,0 +1,205 @@
+// Yardımcı scss dosyalarındaki kodların geçerli olması için bunları ana scss dosyasında import ederiz.
+@import "./footer";
+
+// Değişkenler Örneği
+$bg-color: green;
+$box-width: 100px;
+$box-height: 150px;
+
+.box-1 {
+  width: $box-width;
+  height: $box-height;
+  margin: 10px 0;
+  background-color: $bg-color;
+}
+
+.box-2 {
+  width: $box-width;
+  height: $box-height;
+  margin: 10px 0;
+  background-color: $bg-color;
+}
+
+.box-3 {
+  width: $box-width;
+  height: $box-height;
+  margin: 10px 0;
+  background-color: $bg-color;
+}
+.box-4 {
+  width: $box-width;
+  height: $box-height;
+  margin: 10px 0;
+  background-color: $bg-color;
+}
+
+// İç İçe Yazım Örneği
+
+.card {
+  border: 3px solid gray;
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  &-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  &-body h2 {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+  }
+  &-body p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.6;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  &-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    button {
+      border: none;
+      outline: none;
+      padding: 8px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 4px;
+      color: white;
+      transition: all 0.5s ease;
+      cursor: pointer;
+      &:hover {
+        scale: 0.8;
+        filter: brightness(70%);
+      }
+      &:first-child {
+        background-color: green;
+      }
+      &:last-child {
+        background-color: red;
+      }
+    }
+  }
+}
+// ! Eski Still
+/*
+.card {
+  border: 3px solid gray;
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.card .card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card .card-body h2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.card .card-body p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.6;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.card .card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+  
+.card .card-bottom button {
+  border: none;
+  outline: none;
+  padding: 8px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 4px;
+  color: white;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+  
+.card .card-bottom button:hover {
+  scale: 0.8;
+  filter: brightness(70%);
+}
+
+
+.card .card-bottom button:first-child {
+  background-color: green;
+}
+.card .card-bottom button:last-child {
+  background-color: red;
+}
+*/
+
+// Miras Örneği
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container {
+  margin: 20px;
+  background-color: orange;
+  padding: 40px;
+  @extend .flex-box;
+}
+
+.container-1 {
+  margin: 30px 10px;
+  background-color: orangered;
+  padding: 40px;
+  @extend .flex-box;
+}
+// Mixin oluşturma
+@mixin title {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 45px;
+  text-align: center;
+  letter-spacing: 3px;
+  border-bottom: 4px solid green;
+  padding-bottom: 20px;
+}
+
+.title-1 {
+  // Mixin'i çağırma
+  @include title;
+}
+
+.title-2 {
+  // Mixin'i çağırma
+  @include title;
+}
+
+@mixin phone {
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
+.example {
+  font-size: 45px;
+  border: 3px solid rebeccapurple;
+  width: 250px;
+  @include phone {
+    background-color: aqua;
+  }
+}
