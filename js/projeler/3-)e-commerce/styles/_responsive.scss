@@ -18,6 +18,10 @@
       font-size: 100px !important;
     }
   }
+  .footer-c {
+    grid-template-columns: 1fr !important;
+    row-gap: 40px !important;
+  }
 }
 
 @media (max-width: 550px) {

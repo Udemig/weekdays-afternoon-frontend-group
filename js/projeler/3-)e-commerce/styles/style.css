@@ -26,6 +26,10 @@
   .home-image::before {
     font-size: 100px !important;
   }
+  .footer-c {
+    grid-template-columns: 1fr !important;
+    row-gap: 40px !important;
+  }
 }
 @media (max-width: 550px) {
   header #menu-icon {
@@ -172,6 +176,68 @@ header div #cart-icon::after {
   color: #273ea1;
   font-weight: bold;
 }
+.products .product-container .product-card .product-info .add-to-cart-button {
+  background-color: #273ea1;
+  color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.5s;
+}
+.products .product-container .product-card .product-info .add-to-cart-button:hover {
+  background-color: rgba(39, 61, 161, 0.8196078431);
+}
+
+.footer {
+  background-color: #273ea1;
+  padding: 40px 10px;
+  margin-top: 50px;
+  color: #ffffff;
+}
+.footer-c {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: 16px;
+}
+.footer-box {
+  display: flex;
+  flex-direction: column;
+}
+.footer-box h2 {
+  text-transform: uppercase;
+  font-size: 128px;
+}
+.footer-box .social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.footer-box .social a {
+  background-color: #ffffff;
+  padding: 10px;
+  font-size: 17px;
+  border-radius: 50%;
+}
+.footer-box .social a i {
+  color: #273ea1;
+}
+.footer-box h3 {
+  font-size: 25px;
+}
+.footer-box ul {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.footer-box ul li a {
+  color: #ffffff;
+}
+.footer .copyright {
+  padding: 50px;
+}
+
 body {
   font-family: "Big Shoulders", sans-serif;
   background-color: #ffffff;
