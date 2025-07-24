@@ -1,25 +1,31 @@
-import { getFromLocaleStorage, saveToLocaleStorage } from "./helper.js";
+import {
+  getFromLocalStorage,
+  renderCartTotal,
+  saveToLocalStorage,
+  updateCartIcon,
+} from "./helper.js";
+import { renderCartItems } from "./ui.js";
 
-// Localstorage'dan cart key'ine sahip elemanlara eriş
-let cart = getFromLocaleStorage("cart");
+// localStorage'dan cart elemanlarını al
+let cart = getFromLocalStorage("cart");
 
-// Sepete eleman ekleyecek fonksiyon
+// Sepete ürün ekleyen fonksiyon
 const addToCart = (e, products) => {
-  // Tıklanılan elemanın id'sine eriş
-  const productId = +e.target.dataset.id;
+  // Tıklanılan elemana ait id'ye eriş
+  const productId = Number(e.target.dataset.id);
 
-  // Erişilen id'ye sahip elemanı products içerisinden bul
+  // Id'si bilinen elemanı products içerisinde bul
   const product = products.find((product) => product.id === productId);
 
-  // Bu eleman önceden sepete eklendi mi?
+  // Sepete eklenecek eleman öncesinde eklendi mi ?
   const exitingItem = cart.find((item) => item.id === productId);
 
-  // Eğer ürün önceden sepete eklendiyse bu ürünün miktarını güncelle;eklenmediyse elemanı sepete ekle
+  // Eğer ürün sepete eklendiyse
   if (exitingItem) {
-    // Ürünün miktarını güncelle
+    // Ürününün miktarını güncelle
     exitingItem.quantity++;
   } else {
-    // Sepete eklenecek elemanı hazırla
+    // Ürünü sepete ekle
     const cartItem = {
       id: product.id,
       title: product.title,
@@ -28,20 +34,78 @@ const addToCart = (e, products) => {
       quantity: 1,
     };
 
-    // Sepete eklenecek elemanı cart dizisine ekle
+    // Sepet dizisine ürün ekle
     cart.push(cartItem);
   }
 
-  // Cart dizisini localestorage'a kayıt et
-  saveToLocaleStorage("cart", cart);
+  // Sepeti güncelle
+  saveToLocalStorage("cart", cart);
 
-  // Sepete ekle butonu içerisini güncelle
+  // Add To Cart butonunun içeriğini güncelle
   e.target.textContent = "Added";
 
-  // 2s sonra butonun içerisini eski haline çevir
+  // 2s sonra Add To Cart butonunun içeriğini eski haline çevir
   setTimeout(() => {
     e.target.textContent = "Add to cart";
   }, 2000);
+
+  // Sepet ikonunu güncelle
+  updateCartIcon(cart);
 };
 
-export { addToCart };
+// Sepetten ürün kaldıran fonksiyon
+const removeFromCart = (e) => {
+  // Kullanıcıdan silme işlemi için onay al
+  const response = confirm("Silme işlemini onaylıyor musunuz ?");
+
+  // Eğer kullanıcı silme işlemini onayladıysa
+  if (response) {
+    // Tıklanılan ürün'ün id'sine eriş
+    const productId = parseInt(e.target.dataset.id);
+
+    // Sepetten tıklanan elemanı kaldır
+    cart = cart.filter((item) => item.id !== productId);
+
+    // localStorage'ı güncelle
+    saveToLocalStorage("cart", cart);
+
+    // Arayüzü renderla
+    renderCartItems(cart);
+
+    // Sepet ikonunu güncelle
+    updateCartIcon(cart);
+
+    // Toplam fiyatı renderla
+    renderCartTotal(cart);
+  }
+};
+
+// Sepetteki ürün miktarını güncelleyen fonksiyon
+const onQuantityChange = (e) => {
+  // Güncellenecek elemanın id'sine eriş
+  const productId = +e.target.dataset.id;
+
+  // Yeni ürün miktarına eriş
+  const newQuantity = e.target.value;
+
+  // Yeni miktar 0'dan büyükse
+  if (newQuantity > 0) {
+    // Güncellenecek elemanı dizi içerisinde bul
+    const updatedItem = cart.find((item) => item.id === productId);
+    // Ürün miktarını güncelle
+    updatedItem.quantity = newQuantity;
+
+    // localeStorage'ı güncelle
+    saveToLocalStorage("cart", cart);
+  } else {
+    removeFromCart(e);
+  }
+
+  // Sepet ikonunu güncelle
+  updateCartIcon(cart);
+
+  // Toplam fiyatı renderla
+  renderCartTotal(cart);
+};
+
+export { addToCart, removeFromCart, onQuantityChange };

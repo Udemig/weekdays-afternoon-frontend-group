@@ -1,6 +1,6 @@
 .home {
   min-height: 700px;
-  background-color: $gray-color;
+  background-color: $header-color;
   position: relative;
 
   .home-image {
@@ -9,6 +9,8 @@
     bottom: 0;
     left: 50%;
     transform: translate(-50%);
+    display: flex;
+    justify-content: center;
 
     img {
       width: 100%;
@@ -21,9 +23,6 @@
       font-size: 144px;
       position: absolute;
       top: -28px;
-      left: 50%;
-      transform: translate(-50%);
-
       z-index: -1;
       color: $main-color;
       font-weight: bold;

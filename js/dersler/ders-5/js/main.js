@@ -68,6 +68,8 @@ console.log(
   })} `
 );
 
+console.log(`---------------------------------------`);
+
 // * API:
 
 // Bir web sitesinin temelde iki kısmı bulunur.Frontend (Ön Kısım) ve Backend (Arka Kısım).Frontend authentication,data gibi hizmetler için backende ihtiyaç duyar.Frontend ve backend arasında haberleşme işlemini api ile yaparız.Api temelde iki kısımdan oluşur:baseUrl ve endpoint.baseUrl endpointleri sarmalayan kapsayıcıdır.Endpoint'ler ise veri için özelleştirilmiş uç noktalardır.
@@ -81,3 +83,90 @@ console.log(
 // Eğer Js'de kullanılan veriyi JSON'a çevirmek için JSON.stringify() metodu kullanılır.
 
 // Bu iki metotda () içerisinde dönüştürülmek istenen veriyi yazmamızı ister.
+
+// * Api'a istek at
+const response = await fetch("https://dummyjson.com/todos");
+
+// Gelen veriyi json'dan js nesnesine çevir
+const data = await response.json();
+
+// Javascript'de kodlar aksi söylenmedikçe sekrondur.Yani aynı anda çalışır.Ama api'dan gelen veriye erişilecekken bunu asektron şekilde yapmamız gerekir.Bunu iki farklı şekilde yapabiliriz.
+
+// async-await
+
+const getUsers = async () => {
+  const response = await fetch("https://dummyjson.com/users");
+
+  const data = await response.json();
+
+  console.log(data);
+};
+
+// getUsers();
+
+// promise
+
+const getRecipes = () => {
+  fetch("https://dummyjson.com/recipes")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+};
+
+getRecipes();
+
+// * Javascript Class Yapısı
+
+// Class'lar ortak yapıları bir arada toplayarak kolay bir şekilde yönetmemizi sağlayan yapılardır.
+
+// Class yapısı "class" keyword'ü ile oluşturulur.Bu keyword yazıldıktan sonra class'a bir isim verilir.Verilen isimden sonra {} açılır.{} içerisinde class yapısının sahip olması gereken kodlar yazılır.
+
+class Kişi {
+  // Kurucu metot:constructor class yapısı çağırıldığında ilk çalışacak yapıdır.Bu yapı içerisinde class'ın sahip olacağı değerler tanımlanır ve dışarıdan gelecek değerler karşılanır.
+  constructor(yaş) {
+    this.isim = "İnayet";
+    this.soyisim = "Aydın";
+    this.yaş = yaş; // Dışarıdan gelecek değeri karşılama
+  }
+
+  isimYazdır() {
+    console.log(`Kişi isim: ${this.isim}`);
+  }
+
+  soyisimYazdır() {
+    console.log(`Kişi soyisim: ${this.soyisim}`);
+  }
+}
+
+// class yapısından istifade edebilmek için bunun örneğini almak gerekir
+const kişi = new Kişi(23);
+
+console.log(kişi.isim);
+console.log(kişi.soyisim);
+console.log(kişi.yaş);
+
+kişi.isimYazdır();
+kişi.soyisimYazdır();
+
+// * setTimeout && setInterval
+
+// Bu metotlar zamana bağlı olarak işlemler yapabilmemizi sağlar.
+
+// ! setTimeout ile belirli bir zaman geçtikten sonra bir işlem tetiklemek için kullanılır.Bu metot bizden bir callback function ve bir süre belirteci ister.Verilecek süre milisaniye cinsinden olmalıdır.
+
+// setTimeout(() => {
+//   alert("İşlem gerçekleşti");
+// }, 4000);
+
+// ! setInterval ile belirli zaman aralıklarında işlemler yapabiliriz.Bu metot bizden bir callback function ve bir süre belirteci ister.Verilecek süre milisaniye cinsinden olmalıdır.
+
+// const merhaba = setInterval(() => {
+//   console.log(`Merhaba`);
+// }, 3000);
+
+// setTimeout(() => {
+//   clearInterval(merhaba);
+// }, 15000);
+
+// setIntreval ile yapılan bir işlemi durdurmak için clearInterval metodu kullanılır.Bu metod hangi intervali dururacağını söylememizi ister.

@@ -1,25 +1,34 @@
-import getProducts from "./api.js";
+import fetchProducts from "./api.js";
 import { addToCart } from "./cart.js";
-import { renderProducts, UIEleman } from "./ui.js";
+import {
+  getFromLocalStorage,
+  renderCartTotal,
+  updateCartIcon,
+} from "./helper.js";
+import { renderCartItems, renderProducts, uiElements } from "./ui.js";
 
-// Menu Icon'una tıklanma olayını izle
-UIEleman.menuIcon.addEventListener("click", () => {
-  // Header kısmındaki nav kısmını aç kapa yap
-  UIEleman.nav.classList.toggle("open");
+uiElements.menuIcon.addEventListener("click", () => {
+  // uiElements içerisindeki nav elemanına "open" classını ekle-çıkar
+  uiElements.nav.classList.toggle("open");
 });
 
-// Sayfa yüklendiğinde
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+  // localStorage'dan sepetteki ürünleri al
+  const cart = getFromLocalStorage("cart");
+
   // Hangi sayfadayız ?
   if (window.location.pathname.includes("/cart.html")) {
-    console.log(`Sepet sayfası`);
-  } else {
-    // Api'a istek at
-    const products = await getProducts();
+    renderCartItems(cart);
 
-    // Apidan alınan her ürün için arayüzü renderla
-    renderProducts(products, (e) => {
-      addToCart(e, products);
+    renderCartTotal(cart);
+  } else {
+    fetchProducts().then((products) => {
+      renderProducts(products, (e) => {
+        addToCart(e, products);
+      });
     });
   }
+
+  // Sepet ikonunu güncelle
+  updateCartIcon(cart);
 });
