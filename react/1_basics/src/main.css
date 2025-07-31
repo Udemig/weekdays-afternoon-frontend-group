@@ -1,0 +1,18 @@
+main {
+  height: calc(100vh - 100px);
+  display: flex;
+}
+
+main .left {
+  background-color: green;
+  flex: 1;
+}
+main section {
+  background-color: blue;
+  flex: 1;
+}
+
+main .right {
+  background-color: aqua;
+  flex: 1;
+}
