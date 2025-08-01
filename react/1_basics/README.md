@@ -24,11 +24,11 @@
 
 - index.js: Bir react projesinin ana dosyasıdır.Bu dosya html dosyası içerisinde yer alan #root olan elemanı alıp bunun içerisine App bileşeni içerisindeki elemanları render eder.
 
-1. `.gitignore`: Githuba bir proje yüklediğimizde bu dosya içerisinde ismi yazılı olan dosyalar githuba yüklenmeyecektir.Hassas bilgilerin,büyük dosyaların ismi bu dosya içerisinde yazılır.
+4. `.gitignore`: Githuba bir proje yüklediğimizde bu dosya içerisinde ismi yazılı olan dosyalar githuba yüklenmeyecektir.Hassas bilgilerin,büyük dosyaların ismi bu dosya içerisinde yazılır.
 
-2. `package.json`: React projesinin bağımlılıklarının ve projenin ile alakalı komutların yazılı olduğu dosyadır.
+5. `package.json`: React projesinin bağımlılıklarının ve projenin ile alakalı komutların yazılı olduğu dosyadır.
 
-3. `package-lock.json`: package.json dosyası gibi paket bağımlılıklarını tutar ama bu bağımlılıkları daha spesifik [node sürümü,npm sürümü,...] veriler eşliğinde tutar.
+6. `package-lock.json`: package.json dosyası gibi paket bağımlılıklarını tutar ama bu bağımlılıkları daha spesifik [node sürümü,npm sürümü,...] veriler eşliğinde tutar.
 
 # Bir React Projesi Nasıl Ayağa Kaldırılır ?
 
@@ -82,3 +82,5 @@
   komutu çalıştırılır.
 
 - İndirilen bir paketin sürümünü güncellemek istersek o noktada yine `npm install [kütüphaneAdı]@sürümNo` veya `npm i [kütüphaneAdı]@sürümNo` komutları kullanılır.
+
+- Eğer bir paketi silmek istersekde bunu `npm. uninstall [kütüphaneAdı]` şeklinde yaparız.
