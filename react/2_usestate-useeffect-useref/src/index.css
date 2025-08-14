@@ -1,0 +1,11 @@
+.page {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+}
+
+.users-cart-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+  gap: 10px;
+}
