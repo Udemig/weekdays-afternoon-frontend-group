@@ -1,61 +1,51 @@
-import { useState } from "react";
-import ClassComponent from "./ClassComponent";
-import Counter from "./Counter";
-import Form from "./Form";
-import Users from "./Users";
+import { useEffect, useState } from "react";
+import UseRefExample from "./UseRefExample";
 
 const App = () => {
-  const [showClassComponent, setShowClassComponent] = useState(false);
-  const [showCounterComponent, setShowCounterComponent] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  // Api'dan user verisini alacak fonksiyon
+  const getUser = () => {
+    fetch(`https://dummyjson.com/users/${userId} `)
+      .then((res) => res.json())
+      .then((user) => console.log(user));
+  };
+
+  // state kurulumu
+  const [userId, setUserId] = useState(1);
+
+  // useEffect kurulumu
+  useEffect(() => {
+    getUser();
+    // Burada componentin güncellenme anınıda izlemek için useEffect'e bir bağımlılık verdik.Bu bağımlılık değiştikçe useEffect içerisindeki kodlar yeniden çalışacak
+  }, [userId]);
+
+  console.log(userId);
 
   return (
-    <div className="page py-3 px-4">
-      <Users />
+    <div className="page py-3 px-4 ">
+      <div className="container">
+        <div className="d-flex align-items-center justify-content-center gap-3 py-4">
+          <button
+            onClick={() => setUserId(userId - 1)}
+            className="btn btn-danger btn-lg"
+            disabled={userId === 1}
+          >
+            -
+          </button>
 
-      {/* todo: Eğer kullanıcı adminse "Admin Girişi",değilse "Kullanıcı Girişi" yazdır. */}
+          <h1 className="fs-1 fw-bold">{userId}</h1>
 
-      <button
-        onClick={() => setIsAdmin(!isAdmin)}
-        className="btn btn-info mx-3 my-4"
-      >
-        {/* isAdmin değeri true ise "Admin Girişi" false ise "Kullanıcı Girişi" yazdır */}
-        {isAdmin ? "Kullanıcı Girişi" : "Admin Girişi"}
-      </button>
+          <button
+            onClick={() => setUserId(userId + 1)}
+            className="btn btn-success btn-lg"
+          >
+            +
+          </button>
+        </div>
 
-      <h1 className="fs-1 fw-bold mx-4">
-        {/* isAdmin değeri true ise "Admin Girişi" false ise "Kullanıcı Girişi" yazdır */}
-        {isAdmin ? "Admin Girişi" : "Kullanıcı Girişi"}
-      </h1>
-
-      {/* todo: Kullanıcının giriş işlemi sırasında hatası varsa "Giriş bilgileriniz hatalı.Lütfen giriş bilgilerinizi kontrol ediniz yazdır." */}
-
-      {hasError && (
-        <h1 className="fs-1 fw-bold mx-3 my-5">
-          Giriş bilgileriniz hatalı.Lütfen giriş bilgilerinizi kontrol ediniz
-          yazdır.
-        </h1>
-      )}
-
-      <button
-        onClick={() => setShowCounterComponent(!showCounterComponent)}
-        className="btn btn-light mx-3 my-5"
-      >
-        Counter Bileşenini Göster
-      </button>
-
-      {showCounterComponent && <Counter />}
-
-      <Form />
-
-      <button
-        className="btn btn-secondary mx-4 my-3"
-        onClick={() => setShowClassComponent(!showClassComponent)}
-      >
-        Class Componenti Göster-Gizle
-      </button>
-      {showClassComponent && <ClassComponent />}
+        {/* UseRef Example */}
+        <UseRefExample />
+      </div>
+      {/* User Id */}
     </div>
   );
 };

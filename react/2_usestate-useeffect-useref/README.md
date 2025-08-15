@@ -59,4 +59,10 @@ Kullanıcının giriş bilgileri yanlışsa "Giriş Bilgisi Yanlıştır" yazdı
 
 ## Çoklu Renderlama
 
+- React component tabanlı bir mimariye sahiptir.Program içerisinde bir defa oluşturulan componentler istenilen yerde istenilen adette çağırılıp kullanılabilir.Fakat bir componentin birden fazla render edilmesi render sayısı çok olduğunda sıkıntı yaratabilir.Bu durumda çoklu renderlama kullanılır.Çoklu renderlama için javascript dizi metotlarından map kullanılır.Bu sayede ilgili dizi içerisindeki her eleman için renderlama işlemi kolayca yapılır.Hemde dizinin elemanların sayısı değiştikçe otomatik olarak render sayısıda değişir.
+
 # useRef:
+
+- useRef javascript'de document.querySellector,document.getElementById,... kullanılan metotları react'daki karşılığıdır.Bu hook elemanlara referans aracılığıyla erişmemizi sağlar.
+
+- useRef'i kullanırken ilk olarak useRef hook'unu react içerisinden import etmeliyiz.Akabinde ise referans= useRef() şeklinde bir referans oluşturmalıyız.Referans oluşturma işleminden sonra erişilmek istenen elemana ref={} attribute'ü ile oluşturulan referans verilir.
