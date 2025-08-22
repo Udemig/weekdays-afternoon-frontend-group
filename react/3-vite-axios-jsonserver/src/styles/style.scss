@@ -1,0 +1,341 @@
+// Scss Imports
+@import "./variables";
+@import "./mixin.scss";
+
+// Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+// Global Styles
+
+body {
+  background-color: $body;
+  font-family: "Cairo", sans-serif;
+}
+
+main {
+  padding: 10px;
+}
+
+input {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+button {
+  background: $white;
+  box-shadow: $shadow-2;
+  padding: 10px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+// Header
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // Logo
+  h1 {
+    font-size: 35px;
+    @include xs-mobile {
+      font-size: 27px;
+      flex: 1;
+    }
+  }
+
+  // Form && Buttons
+  div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    @include xs-mobile {
+      flex: 2;
+      justify-content: space-between;
+    }
+
+    // Form
+    form {
+      display: flex;
+      box-shadow: $shadow-2;
+      @include xs-mobile {
+        flex: 1;
+      }
+
+      // Input
+      input {
+        width: 300px;
+        border-radius: 0 5px 5px 0;
+        padding: 15px;
+        @include mobile {
+          width: 200px;
+        }
+        @include xs-mobile {
+          width: 100% !important;
+        }
+      }
+
+      // Button
+      .form-button {
+        font-size: 20px;
+        color: $purple;
+        padding: 0 10px;
+        background-color: white;
+        border-radius: 5px 0 0 5px !important;
+      }
+    }
+
+    // Hidden Buttons
+    .hidden-button {
+      @include tablet {
+        display: none;
+      }
+    }
+
+    // Create Button
+    .create-button {
+      background-color: $purple;
+      color: $white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      @include xs-mobile {
+        display: grid;
+        place-items: center;
+      }
+
+      svg {
+        font-size: 30px;
+      }
+
+      span {
+        font-size: 20px;
+        @include xs-mobile {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Contacts List
+.contacts-wrapper {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 10px;
+  gap: 10px;
+}
+
+// Contact Card
+.card {
+  position: relative;
+  box-shadow: $shadow-2;
+  background-color: $white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  // Profile
+  h1 {
+    background-color: $purple;
+    width: 18%;
+    aspect-ratio: 1;
+    min-width: 60px;
+    text-align: center;
+    color: $white;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 10px;
+    box-shadow: $shadow-2;
+  }
+
+  // Name
+  .contact-name {
+    font-size: 30px;
+  }
+
+  // Position
+  .contact-position {
+    color: gray;
+    font-size: 18px;
+    margin: 5px 0;
+  }
+
+  // Company
+  .contact-company {
+    color: $purple;
+    font-size: 20px;
+  }
+
+  // Bottom
+  .contact-bottom {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span:first-child {
+        background-color: rgba(128, 0, 128, 0.291);
+        padding: 8px;
+        display: grid;
+        place-items: center;
+        color: $purple;
+        border-radius: 4px;
+        transition: all 0.4s ease-in-out;
+      }
+      span:last-child {
+        font-weight: 700;
+      }
+    }
+  }
+
+  // Buttons
+  .card-buttons {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+      color: $white;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+
+      &:first-child {
+        background-color: rgb(0, 157, 255);
+        &:hover {
+          background-color: #0e62a3;
+        }
+      }
+      &:last-child {
+        background-color: crimson;
+        &:hover {
+          background-color: #8c0822;
+        }
+      }
+    }
+  }
+}
+
+// Modal
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.63);
+  position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(10px);
+
+  // Modal İnner
+  .modal-inner {
+    background-color: $white;
+    padding: 20px;
+    width: 50%;
+    min-width: 400px;
+    min-height: 500px;
+    max-height: 700px;
+    border-radius: 10px;
+
+    // Head
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      button {
+        border: 1px solid gray;
+        height: 40px;
+        aspect-ratio: 1;
+        box-shadow: unset;
+        border-radius: 5px;
+        font-size: 20px;
+      }
+    }
+
+    // Form
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+
+      // Field
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        // Label
+        label {
+          font-weight: 600;
+        }
+
+        // Input
+        input {
+          box-shadow: $shadow-2;
+          border-radius: 10px;
+          padding: 10px;
+        }
+      }
+
+      // Buttons
+      .modal-buttons {
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        margin-top: 20px;
+
+        button {
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-size: 16px;
+          color: $white;
+          cursor: pointer;
+
+          &:first-child {
+            background-color: gray;
+            &:hover {
+              background-color: #808080e6;
+            }
+          }
+
+          &:last-child {
+            background-color: $purple;
+            &:hover {
+              background-color: #3d0e7c;
+            }
+          }
+        }
+      }
+    }
+  }
+}

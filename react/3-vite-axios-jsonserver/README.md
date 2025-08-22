@@ -25,3 +25,35 @@
 ! Bazı durumlarda backend'in ayağa kaldırılacağı portu ayarlamamız gerekebilir.Bu durumda `json-server --watch db.json --port portNo` şeklinde backendin çalıştırılacağı portu belirleyebiliriz.Bu portun default değeri 3000'dir.
 
 Artık proje içerisinde `http://localhost:portNo` adresine tüm http isteklerini atıp projeyi sahte backend ile geliştirebiliriz.Gerçek backend hazır olduğunda ise sadece api isteği atılan adresi güncelleyeceğiz.
+
+- `npm install json-server@0.17.4  `
+
+# Axios Nedir?
+
+- Axios güncel projelerde client-server arasındaki haberleşmeyi sağlayan bir kütüphanedir.Axios ile api isteklerini daha kolay bir şekile yönetiriz.Ör client-server arasındaki haberleşme sırasına bizim yaptığımız json <-> js dönüştürmelerini kendisi otomatik yapar,api istekleri için ortak yapılar oluşturmamız ve api isteğini özelleştirebilmemizi sağlar.
+
+- Axios'u kullanırken ilk olarak paketini `npm install axios` diyerek indirmeliyiz.Devamında axios'u import edip api istekleri için ortak yapıları kodlamalıyız.Sonrasında oluşturulan bu ortak yapı sayesine tüm http metotlarını kullanarak proje geliştirebiliriz.
+
+# HTTP METOTLARI
+
+- Http metotları client ve server arasındaki güvenli haberleşme için kullanılan metotlardır.Şimdi bu metotlara teker teker bakalım:
+
+1. GET:
+
+- Server'dan client kısmına veri çekmek için kullanılır.
+
+2. POST:
+
+- Server'dan client'a veri göndermek için kullanılır.
+
+3. PUT:
+
+- Server'dan client'daki veriyi güncellemek için kullanılır.Put ile veri güncellemesi yapılacakken tüm veri gönderilmelidir.Yani kullanıcı sadece biografi kısmını güncellese dahi tüm kullanıcı verileri gönderilmelidir.
+
+4. PATCH:
+
+- Server'dan client'daki veriyi güncellemek için kullanılır.Patch metodundan sadece güncellenecek verinin gönderilmesi yeterlidir.Yani kullanıcı sadece biografi kısmını güncellediğinde dahi tüm kullanıcı verileri değil sadece biografi kısmını göndermesi yeterlidir.
+
+5. DELETE:
+
+- Server'dan client'daki veriyi silmek için kullanılır.
